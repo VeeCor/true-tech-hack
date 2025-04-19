@@ -6,8 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/rest-api/product")
@@ -16,7 +15,7 @@ public class ProductController {
     private final GetAllProductsInbound getAllProductsInbound;
 
     @GetMapping("/getAll")
-    public List<Product> getAllProducts() {
+    public Flux<Product> getAllProducts() {
         return getAllProductsInbound.execute();
     }
 }

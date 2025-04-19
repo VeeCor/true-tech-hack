@@ -1,4 +1,4 @@
-package dev.truetechhack.app.implementation.orders;
+package dev.truetechhack.app.implementation.order;
 
 import dev.truetechhack.app.api.order.GetAllOrdersInbound;
 import dev.truetechhack.domain.order.Order;

@@ -15,8 +15,8 @@ import java.util.List;
 public class SupplyController {
     private final GetAllSupplyInbound getAllSupplyInbound;
 
-    @GetMapping("/getAll")
-    public List<Supply> getAllSupply() {
-        return getAllSupplyInbound.execute();
-    }
+//    @GetMapping("/getAll")
+//    public List<Supply> getAllSupply() {
+//        return getAllSupplyInbound.execute();
+//    }
 }

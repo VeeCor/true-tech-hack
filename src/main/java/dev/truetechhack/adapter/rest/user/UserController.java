@@ -15,8 +15,8 @@ import java.util.List;
 public class UserController {
     private final GetAllUserInbound getAllUserInbound;
 
-    @GetMapping("/getAll")
-    public List<User> getAllUsers() {
-        return getAllUserInbound.execute();
-    }
+//    @GetMapping("/getAll")
+//    public List<User> getAllUsers() {
+//        return getAllUserInbound.execute();
+//    }
 }

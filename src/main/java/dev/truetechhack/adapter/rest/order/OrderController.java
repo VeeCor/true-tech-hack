@@ -15,8 +15,8 @@ import java.util.List;
 public class OrderController {
     private final GetAllOrdersInbound getAllOrdersInbound;
 
-    @GetMapping("/getAll")
-    public List<Order> getAllOrders() {
-        return getAllOrdersInbound.execute();
-    }
+//    @GetMapping("/getAll")
+//    public List<Order> getAllOrders() {
+//        return getAllOrdersInbound.execute();
+//    }
 }
