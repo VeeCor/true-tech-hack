@@ -30,7 +30,7 @@ public class TrueTabsRepositoryAdapter implements TrueTabsRepository {
     }
 
     @Override
-    public <T, R> Mono<R> post(String path, T body, Class<R> responseType) {
+    public <T, R> Mono<R> post(String path, T body, ParameterizedTypeReference<R> responseType) {
         return webClient.post()
             .uri(path)
             .bodyValue(body)

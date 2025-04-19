@@ -23,8 +23,7 @@ public class GetAllProductsUseCase implements GetAllProductsInbound {
     @Override
     public Flux<Product> execute() {
         return trueTabsRepository.get(PATH,
-                new ParameterizedTypeReference<ApiResponse<DataWrapper<Product>>>() {
-                })
+                new ParameterizedTypeReference<ApiResponse<DataWrapper<Product>>>() {})
             .flatMapMany(response -> {
                 if (response != null) {
                     log.info("code = {}, success = {}, message = {}", response.getCode(), response.isSuccess(), response.getMessage());

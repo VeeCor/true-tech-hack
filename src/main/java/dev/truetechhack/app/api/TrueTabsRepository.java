@@ -9,7 +9,7 @@ import java.io.IOException;
 public interface TrueTabsRepository {
     <T> Mono<T> get(String path, ParameterizedTypeReference<T> responseType);
 
-    <T, R> Mono<R> post(String path, T body, Class<R> responseType);
+    <T, R> Mono<R> post(String path, T body, ParameterizedTypeReference<R> responseType);
 
     Mono<String> postFile(String path, MultipartFile file) throws IOException;
 
