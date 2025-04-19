@@ -1,7 +1,7 @@
-package dev.truetechhack.adapter.rest.supply;
+package dev.truetechhack.adapter.rest.user;
 
-import dev.truetechhack.app.api.supply.GetAllSupplyInbound;
-import dev.truetechhack.domain.supply.Supply;
+import dev.truetechhack.app.api.user.GetAllUserInbound;
+import dev.truetechhack.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest-api/supply")
 @RequiredArgsConstructor
-public class SupplyController {
-    private final GetAllSupplyInbound getAllSupplyInbound;
+public class UserController {
+    private final GetAllUserInbound getAllUserInbound;
 
     @GetMapping("/getAll")
-    public List<Supply> getAllSupply() {
-        return getAllSupplyInbound.execute();
+    public List<User> getAllUsers() {
+        return getAllUserInbound.execute();
     }
 }
