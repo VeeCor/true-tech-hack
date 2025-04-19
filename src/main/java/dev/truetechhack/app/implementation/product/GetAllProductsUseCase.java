@@ -5,7 +5,8 @@ import dev.truetechhack.app.api.product.GetAllProductsInbound;
 import dev.truetechhack.app.exception.ProductException;
 import dev.truetechhack.domain.product.Product;
 import dev.truetechhack.domain.response.ApiResponse;
-import dev.truetechhack.domain.response.PageData;
+import dev.truetechhack.domain.response.DataWrapper;
+import dev.truetechhack.domain.response.RecordsWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -23,15 +24,15 @@ public class GetAllProductsUseCase implements GetAllProductsInbound {
     @Override
     public List<Product> execute() {
 
-        ApiResponse<PageData<Product>> response = trueTabsRepository.get(PATH,
-                new ParameterizedTypeReference<ApiResponse<PageData<Product>>>() {
+        ApiResponse<DataWrapper<Product>> response = trueTabsRepository.get(PATH,
+                new ParameterizedTypeReference<ApiResponse<DataWrapper<Product>>>() {
                 })
             .block();
         System.out.println(response);
 
         if (response != null) {
             log.info("code = {}, success = {}, message = {}", response.getCode(), response.isSuccess(), response.getMessage());
-            return response.getData().getRecords();
+            return response.getData().getRecords().stream().map(RecordsWrapper::getFields).toList();
         } else {
             throw new ProductException("Response is null");
         }
