@@ -11,8 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 @Slf4j
 @Component
@@ -22,17 +21,16 @@ public class GetAllSupplyUseCase implements GetAllSupplyInbound {
     private final TrueTabsRepository trueTabsRepository;
 
     @Override
-    public List<Supply> execute() {
-        ApiResponse<DataWrapper<Supply>> response = trueTabsRepository.get(PATH, new ParameterizedTypeReference<ApiResponse<DataWrapper<Supply>>>() {
-        }).block();
-        System.out.println(response);
-
+    public Flux<Supply> execute() {
+    return trueTabsRepository.get(PATH, new ParameterizedTypeReference<ApiResponse<DataWrapper<Supply>>>() {
+    }).flatMapMany(response -> {
         if (response != null) {
             log.info("code = {}, success = {}, message = {}", response.getCode(), response.isSuccess(), response.getMessage());
-            return response.getData().getRecords().stream().map(RecordsWrapper::getFields).toList();
+            return Flux.fromIterable(response.getData().getRecords().stream().map(RecordsWrapper::getFields).toList());
         }
         else {
-            throw new SupplyException("Response is null");
+            return Flux.error(new SupplyException("Response is null"));
         }
+    });
     }
 }
