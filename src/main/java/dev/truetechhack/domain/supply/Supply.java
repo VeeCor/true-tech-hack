@@ -1,8 +1,8 @@
-package dev.truetechhack.domain.delivery;
+package dev.truetechhack.domain.supply;
 
 import lombok.Data;
 
 //TODO доделать (написать поля)
 @Data
-public class Delivery {
+public class Supply {
 }

@@ -1,9 +1,11 @@
 package dev.truetechhack.app.implementation;
 
 import dev.truetechhack.app.api.TrueTabsRepository;
+import dev.truetechhack.domain.product.Product;
 import dev.truetechhack.domain.response.ApiResponse;
 import dev.truetechhack.domain.testEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,7 +17,9 @@ public class testGetUseCase {
     private final TrueTabsRepository apiClient;
 
     public ApiResponse<List<testEntity>> execute() {
-        ApiResponse<List<testEntity>> response = apiClient.get("/dstTBU4JBtwqUhQ6hV/records?viewId=viwi0pFv4bwxj&fieldKey=name", ApiResponse.class)
+        ApiResponse<List<testEntity>> response = apiClient.get(
+            "/dstTBU4JBtwqUhQ6hV/records?viewId=viwi0pFv4bwxj&fieldKey=name",
+                new ParameterizedTypeReference<ApiResponse<List<testEntity>>>() {})
             .block();
         System.out.println(response);
         return null;
