@@ -49,7 +49,6 @@ public class UpdateProductUseCase implements UpdateProductInbound {
                     });
             })
             .doOnNext(response -> {
-                System.out.println(response.getData());
                 log.info("code = {}, success = {}, message = {}", response.getCode(), response.isSuccess(), response.getMessage());
             })
             .doOnError(error -> {
