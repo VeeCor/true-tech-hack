@@ -1,8 +1,6 @@
 package dev.truetechhack.adapter.rest.product;
 
-import dev.truetechhack.app.api.product.AddProductInbound;
-import dev.truetechhack.app.api.product.GetAllProductsInbound;
-import dev.truetechhack.app.api.product.UpdateProductInbound;
+import dev.truetechhack.app.api.product.*;
 import dev.truetechhack.app.exception.ProductException;
 import dev.truetechhack.domain.product.Product;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +18,22 @@ public class ProductController {
     private final GetAllProductsInbound getAllProductsInbound;
     private final AddProductInbound addProductInbound;
     private final UpdateProductInbound updateProductInbound;
+    private final FindProductByIdInbound findProductByIdInbound;
+    private final FindProductByNameInbound findProductByNameInbound;
 
     @GetMapping("/getAll")
     public Flux<Product> getAllProducts() {
         return getAllProductsInbound.execute();
+    }
+
+    @GetMapping("/findById/{id}")
+    public Mono<Product> findById(@PathVariable int id) {
+        return findProductByIdInbound.execute(id);
+    }
+
+    @GetMapping("/findByName/{name}")
+    public Flux<Product> findByName(@PathVariable String name) {
+        return findProductByNameInbound.execute(name);
     }
 
     @PostMapping("/add-product")
