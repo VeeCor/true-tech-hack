@@ -1,6 +1,6 @@
 package dev.truetechhack.adapter.rest.security;
 
-import dev.truetechhack.adapter.rest.user.dto.UserSignInDto;
+import dev.truetechhack.adapter.rest.security.dto.UserSignInDto;
 import dev.truetechhack.app.api.security.SignInInbound;
 import dev.truetechhack.app.exception.ProductException;
 import lombok.RequiredArgsConstructor;
