@@ -55,8 +55,8 @@ public class TrueTabsRepositoryAdapter implements TrueTabsRepository {
     }
 
     @Override
-    public <T, R> Mono<R> put(String path, T body, Class<R> responseType) {
-        return webClient.put()
+    public <T, R> Mono<R> patch(String path, T body, ParameterizedTypeReference<R> responseType) {
+        return webClient.patch()
             .uri(path)
             .bodyValue(body)
             .retrieve()
@@ -64,7 +64,7 @@ public class TrueTabsRepositoryAdapter implements TrueTabsRepository {
     }
 
     @Override
-    public <R> Mono<R> delete(String path, Class<R> responseType) {
+    public <R> Mono<R> delete(String path, ParameterizedTypeReference<R> responseType) {
         return webClient.delete()
             .uri(path)
             .retrieve()
