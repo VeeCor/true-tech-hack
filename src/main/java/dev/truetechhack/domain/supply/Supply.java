@@ -1,4 +1,4 @@
-package dev.truetechhack.domain.order;
+package dev.truetechhack.domain.supply;
 
 import dev.truetechhack.domain.product.Product;
 import lombok.Data;
@@ -8,10 +8,10 @@ import java.util.List;
 
 //TODO доделать (написать поля)
 @Data
-public class Order {
+public class Supply {
     private int id;
     private String fullName;
-    private int orderNumber;
+    private int supplyNumber;
     private Date data;
     private List<Product> products;
     private String count;

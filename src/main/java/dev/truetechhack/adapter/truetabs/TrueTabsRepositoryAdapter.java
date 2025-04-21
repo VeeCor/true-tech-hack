@@ -2,6 +2,7 @@ package dev.truetechhack.adapter.truetabs;
 
 import dev.truetechhack.app.api.TrueTabsRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class TrueTabsRepositoryAdapter implements TrueTabsRepository {
     private final WebClient webClient;
 
     @Override
-    public <T> Mono<T> get(String path, Class<T> responseType) {
+    public <T> Mono<T> get(String path, ParameterizedTypeReference<T> responseType) {
         return webClient.get()
             .uri(path)
             .accept(MediaType.APPLICATION_JSON)
@@ -29,7 +30,7 @@ public class TrueTabsRepositoryAdapter implements TrueTabsRepository {
     }
 
     @Override
-    public <T, R> Mono<R> post(String path, T body, Class<R> responseType) {
+    public <T, R> Mono<R> post(String path, T body, ParameterizedTypeReference<R> responseType) {
         return webClient.post()
             .uri(path)
             .bodyValue(body)
@@ -54,8 +55,8 @@ public class TrueTabsRepositoryAdapter implements TrueTabsRepository {
     }
 
     @Override
-    public <T, R> Mono<R> put(String path, T body, Class<R> responseType) {
-        return webClient.put()
+    public <T, R> Mono<R> patch(String path, T body, ParameterizedTypeReference<R> responseType) {
+        return webClient.patch()
             .uri(path)
             .bodyValue(body)
             .retrieve()
@@ -63,7 +64,7 @@ public class TrueTabsRepositoryAdapter implements TrueTabsRepository {
     }
 
     @Override
-    public <R> Mono<R> delete(String path, Class<R> responseType) {
+    public <R> Mono<R> delete(String path, ParameterizedTypeReference<R> responseType) {
         return webClient.delete()
             .uri(path)
             .retrieve()
